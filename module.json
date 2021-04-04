@@ -1,0 +1,10 @@
+{
+  "name": "Ticketing",
+  "alias": "ticketing",
+  "description": "Ticket Support system",
+  "order": 1200,
+  "confidential": 0,
+  "repo": "https://git.yasna.team/quark/ticketing.git",
+  "forced_parents": "Endpoint,Person",
+  "conditional_parents": ""
+}
