@@ -9,10 +9,6 @@ class Ticket extends ModularModel
 {
     use SoftDeletes;
 
-    public function test()
-    {
-        return;
-    }
 
     /**
      * Get the messages for the ticket.
