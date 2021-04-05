@@ -44,7 +44,7 @@ class TicketInsertRequest extends ModularFormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'email', 'unique:users'],
+            'email' => ['required', 'email', 'unique:persons'],
             'type' => ['required', 'string'],
             'title' => ['required', 'max:255'],
             'description' => ['required'],
