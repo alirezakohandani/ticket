@@ -20,6 +20,7 @@ class Ticket extends ModularModel
         return $this->hasMany(Message::class);
     }
 
+
     /**
      * get the main meta fields of the table.
      *

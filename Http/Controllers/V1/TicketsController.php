@@ -7,4 +7,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class TicketsController extends ModularController
 {
+
+    public function store()
+    {
+
+    }
 }
