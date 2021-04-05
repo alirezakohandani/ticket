@@ -9,8 +9,6 @@ class Message extends ModularModel
 {
     use SoftDeletes;
 
-    protected $fillable = ['title', 'description'];
-
     /**
      * Get the ticket that owns the message.
      *

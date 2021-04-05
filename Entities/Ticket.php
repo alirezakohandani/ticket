@@ -9,9 +9,6 @@ class Ticket extends ModularModel
 {
     use SoftDeletes;
 
-
-    protected $fillable = ['user_id', 'type', 'status'];
-
     /**
      * Get the messages for the ticket.
      *
