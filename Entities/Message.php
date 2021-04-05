@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Message extends ModularModel
 {
     use SoftDeletes;
-    use test;
-
+    use Test;
     /**
      * Get the ticket that owns the message.
      *
@@ -17,7 +16,7 @@ class Message extends ModularModel
      */
     public function ticket()
     {
-        return $this->belongsTo(Ticket::class)
+        return $this->belongsTo(Ticket::class);
     }
 
 
