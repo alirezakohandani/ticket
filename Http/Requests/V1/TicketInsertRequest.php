@@ -110,6 +110,10 @@ class TicketInsertRequest extends ModularFormRequest
     protected function fillableFields()
     {
         return [
+            'user_id',
+            'ref_number',
+            'type',
+            'status',
         ];
         //TODO: Return fillable fields or remove the method if you don't need.
     }
