@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Message extends ModularModel
 {
     use SoftDeletes;
+    use test;
 
     /**
      * Get the ticket that owns the message.
