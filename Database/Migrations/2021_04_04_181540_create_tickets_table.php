@@ -16,7 +16,7 @@ class CreateTicketsTable extends ModularMigration
         Schema::create('tickets', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->unsignedBigInteger('person_id');
+            $table->unsignedInteger('person_id');
             $table->foreign('person_id')->references('id')->on('persons')->onDelete('cascade');
 
             $table->integer('ref_number');

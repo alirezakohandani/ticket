@@ -16,10 +16,10 @@ class CreateMessagesTable extends ModularMigration
         Schema::create('messages', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->unsignedBigInteger('ticket_id');
+            $table->unsignedInteger('ticket_id');
             $table->foreign('ticket_id')->references('id')->on('tickets')->onDelete('cascade');
 
-            $table->unsignedBigInteger('person_id');
+            $table->unsignedInteger('person_id');
             $table->foreign('person_id')->references('id')->on('persons')->onDelete('cascade');
 
             $table->string('title');
