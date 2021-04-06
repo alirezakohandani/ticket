@@ -3,22 +3,15 @@
 namespace Modules\Ticketing\Http\Controllers\V1;
 
 use App\Http\Abstracts\ModularController;
+use App\Models\Message;
 use App\Models\Person;
 use App\Models\User;
+use App\Models\Ticket;
 use Modules\Ticketing\Http\Requests\V1\TicketSaveRequest;
-use Modules\Ticketing\Services\Ticket\Front\Ticket;
 use Symfony\Component\HttpFoundation\Response;
 
 class TicketsController extends ModularController
 {
-    /**
-     * ticket variable
-     *
-     * @var [type]
-     */
-    private $ticket;
-
-
 
     /**
      * Save a new ticket
@@ -31,12 +24,14 @@ class TicketsController extends ModularController
         if ($this->isPersonExists($request->email) === null) {
 
             $person = $this->registerUser($request);
-            $this->createTicekt($request, $person->id);
-            //TODO: Set message
+            $ticket = $this->createTicekt($request, $person->id);
+            $this->setMessage($request, $ticket);
+
         }
         $person_id = Person::where('email', $request->email)->first()->id;
-        $this->createTicekt($request, $person_id);
-        //TODO: Set message
+        $ticket    = $this->createTicekt($request, $person_id);
+        $this->setMessage($request, $ticket);
+
 
     }
 
@@ -89,7 +84,26 @@ class TicketsController extends ModularController
     {
         return User::instance()->batchSave([
             'email' => $request->email,
-        ])
-            ;
+        ]);
+    }
+
+
+
+    /**
+     * Set the first message by the user for a new ticket
+     *
+     * @param TicketSaveRequest $request
+     * @param Ticket            $ticket
+     *
+     * @return \App\Models\Message
+     */
+    private function setMessage(TicketSaveRequest $request, Ticket $ticket)
+    {
+        return Message::instance()->batchSave([
+            'ticket_id'   => $ticket->id,
+            'person_id'   => Person::where('email', $request->eamil)->first()->id,
+            'title'       => $request->title,
+            'description' => $request->description,
+        ]);
     }
 }
