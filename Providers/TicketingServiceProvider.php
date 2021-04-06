@@ -3,6 +3,7 @@
 namespace Modules\Ticketing\Providers;
 
 use App\Http\Abstracts\ModularProvider;
+use Modules\Ticketing\Http\Endpoints\V1\TicketSaveEndpoint;
 
 class TicketingServiceProvider extends ModularProvider
 {
@@ -11,6 +12,19 @@ class TicketingServiceProvider extends ModularProvider
      */
     public function index()
     {
-        // Call your methods here!
+        $this->registerEndpoints();
     }
+
+
+
+    /**
+     * register endpoints
+     *
+     * @return void
+     */
+    private function registerEndpoints()
+    {
+        endpoint()->register(TicketSaveEndpoint::class);
+    }
+
 }
