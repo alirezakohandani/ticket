@@ -26,11 +26,17 @@ class TicketsController extends ModularController
             $person = $this->registerUser($request);
             $ticket = $this->createTicekt($request, $person->id);
             $this->setMessage($request, $ticket);
+            return $this->success([
+                'ref_number' => $ticket->ref_number,
+            ]);
 
         }
         $person_id = Person::where('email', $request->email)->first()->id;
         $ticket    = $this->createTicekt($request, $person_id);
         $this->setMessage($request, $ticket);
+        return $this->success([
+            'ref_number' => $ticket->ref_number,
+        ]);
 
 
     }
