@@ -29,8 +29,9 @@ class Ticket
 
 
     /**
-     * @param string $email
+     * Checks if there is a person
      *
+     * @param string $email
      * @return mixed
      */
     private function isPersonExists(string $email)
