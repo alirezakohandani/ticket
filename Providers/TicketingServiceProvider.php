@@ -13,6 +13,8 @@ class TicketingServiceProvider extends ModularProvider
     public function index()
     {
         $this->registerEndpoints();
+        $this->registerModelTraits();
+
     }
 
 
@@ -26,5 +28,18 @@ class TicketingServiceProvider extends ModularProvider
     {
         endpoint()->register(TicketSaveEndpoint::class);
     }
+
+
+
+    /**
+     * register ModelTraits
+     *
+     * @return void
+     */
+    private function registerModelTraits()
+    {
+        $this->addModelTrait("TicketingRelatedWithPersonTrait", "Person");
+    }
+
 
 }
