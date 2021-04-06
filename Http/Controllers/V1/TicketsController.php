@@ -2,6 +2,7 @@
 
 namespace Modules\Ticketing\Http\Controllers\V1;
 
+use App\Classes\TrackingNumber;
 use App\Http\Abstracts\ModularController;
 use App\Models\Message;
 use App\Models\Person;
@@ -69,7 +70,7 @@ class TicketsController extends ModularController
     {
         return $request->model->batchSave([
             'person_id'  => $person_id,
-            'ref_number' => '12345678',  //TODO: generate ref_number
+            'ref_number' => TrackingNumber::id2No($person_id),
             'type'       => $request->type,
             'status'     => 'pending',
 
