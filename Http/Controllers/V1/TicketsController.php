@@ -70,7 +70,7 @@ class TicketsController extends ModularController
     {
         return $request->model->batchSave([
             'person_id'  => $person_id,
-            'ref_number' => TrackingNumber::id2No($person_id),
+            'ref_number' => $this->generateRefNumber(),
             'type'       => $request->type,
             'status'     => 'pending',
 
@@ -112,5 +112,23 @@ class TicketsController extends ModularController
             'title'       => $request->title,
             'description' => $request->description,
         ]);
+    }
+
+
+
+    /**
+     * Generates ref_number which is not in the table
+     *
+     * @return int
+     */
+    protected function generateRefNumber()
+    {
+        do {
+
+            $ref_number = TrackingNumber::id2No(rand(1, 999999));
+
+        } while (Ticket::where('ref_number', $ref_number)->exists());
+
+        return $ref_number;
     }
 }
