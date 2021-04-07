@@ -2,11 +2,11 @@
 
 namespace Modules\Ticketing\Entities\Traits;
 
-use Modules\Ticketing\Entities\Ticket;
+use App\Models\Ticket;
+
 
 /**
  * establish the relationship between the persons module and ticketing
- *
  */
 trait TicketingRelatedWithPersonTrait
 {
@@ -19,4 +19,6 @@ trait TicketingRelatedWithPersonTrait
     {
         $this->hasMany(Ticket::class);
     }
+
+
 }
