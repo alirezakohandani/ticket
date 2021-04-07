@@ -9,7 +9,8 @@ use Modules\Ticketing\Http\Controllers\V1\TicketsController;
  * @api               {POST}
  *                    /api/modular/v1/ticketing-ticket-save
  *                    Create a ticket
- * @apiDescription    Guest users can send a support ticket and receive a tracking code and are automatically registered on the site.
+ * @apiDescription    Guest users can send a support ticket and receive a tracking code and are automatically
+ *                    registered on the site.
  * @apiVersion        1.0.0
  * @apiName           Create a ticket
  * @apiGroup          Ticketing
@@ -29,7 +30,7 @@ use Modules\Ticketing\Http\Controllers\V1\TicketsController;
  *          'ref_number' => 123456,
  *      }
  * }
- * @apiErrorExample   TODO: Follow the below example and change it as appropriate!
+ * @apiErrorExample
  * HTTP/1.1 400 Bad Request
  * {
  *      "status": 400,
