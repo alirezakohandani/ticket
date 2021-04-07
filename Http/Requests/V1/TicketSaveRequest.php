@@ -4,6 +4,7 @@ namespace Modules\Ticketing\Http\Requests\V1;
 
 use App\Http\Abstracts\ModularFormRequest;
 use App\Models\Ticket;
+use Modules\Ticketing\Rules\TypeRule;
 
 /**
  * @property Ticket $model
@@ -28,7 +29,7 @@ class TicketSaveRequest extends ModularFormRequest
         return [
             'email'       => "required|email",
             'type'        => "required|string",
-            'title'       => "required|max:255'",
+            'title'       => "required|max:255",
             'description' => "required|string",
         ];
     }
