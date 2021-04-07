@@ -103,6 +103,6 @@ class TicketShowEndpoint extends EndpointAbstract
      */
     public function getController(): string
     {
-        return 'TicketsController@test';
+        return 'TicketsController@show';
     }
 }
