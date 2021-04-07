@@ -28,7 +28,7 @@ class TicketSaveRequest extends ModularFormRequest
     {
         return [
             'email'       => "required|email",
-            'type'        => "required|string",
+            'type'        => "required|string|in:immediate,normal,nonsignificant",
             'title'       => "required|max:255",
             'description' => "required|string",
         ];
