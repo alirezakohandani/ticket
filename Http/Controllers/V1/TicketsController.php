@@ -9,6 +9,7 @@ use App\Models\Person;
 use App\Models\User;
 use App\Models\Ticket;
 use Modules\Ticketing\Http\Requests\V1\TicketSaveRequest;
+use Modules\Ticketing\Http\Requests\V1\TicketShowRequest;
 use Symfony\Component\HttpFoundation\Response;
 
 class TicketsController extends ModularController
@@ -45,6 +46,34 @@ class TicketsController extends ModularController
             'ref_number' => $ticket->ref_number,
         ]);
 
+
+    }
+
+
+
+    /**
+     * Show the current status on the guest users ticket
+     *
+     * @param TicketShowRequest $request
+     *
+     * @return Response
+     */
+    public function show(TicketShowRequest $request)
+    {
+        $ticket = $request->getTicketWithRefnumber($request->ref_number);
+
+        if ($ticket !== null) {
+            return $this->success([
+                'status'   => $ticket->status,
+                'title'    => $ticket->messages()->first()->title,
+                'messages' => $ticket->messages->map(function ($message) {
+                    return [
+                        'description' => $message->description,
+                    ];
+                }),
+            ]);
+        }
+        return $this->clientError();
 
     }
 
@@ -97,7 +126,8 @@ class TicketsController extends ModularController
     {
         return User::instance()->batchSave([
             'email' => $request->email,
-        ]);
+        ])
+            ;
     }
 
 
@@ -117,7 +147,8 @@ class TicketsController extends ModularController
             'person_id'   => Person::where('email', $request->eamil)->first()->id,
             'title'       => $request->title,
             'description' => $request->description,
-        ]);
+        ])
+            ;
     }
 
 
