@@ -4,6 +4,8 @@ namespace Modules\Ticketing\Entities\Traits;
 
 use App\Models\Person;
 use App\Models\Ticket;
+use App\Models\User;
+use Modules\Ticketing\Http\Requests\V1\TicketSaveRequest;
 
 
 /**
@@ -36,5 +38,20 @@ trait TicketingRelatedWithPersonTrait
         return isset($person);
     }
 
+
+
+    /**
+     * user registration
+     *
+     * @param TicketSaveRequest $request
+     *
+     * @return \App\Models\Person
+     */
+    public function registerUser(TicketSaveRequest $request)
+    {
+        return $this->batchSave([
+            'email' => $request->email,
+        ]);
+    }
 
 }

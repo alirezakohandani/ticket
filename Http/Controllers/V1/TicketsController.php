@@ -24,7 +24,7 @@ class TicketsController extends ModularController
     {
         if (!$person->isPersonExists($request->email)) {
 
-            $this->registerUser($request);
+            $person->registerUser($request);
         }
         $person_id = Person::where('email', $request->email)->first()->id;
         $ticket    = $this->createTicekt($request, $person_id);
@@ -89,23 +89,6 @@ class TicketsController extends ModularController
 
 
     /**
-     * user registration
-     *
-     * @param TicketSaveRequest $request
-     *
-     * @return \App\Models\Person
-     */
-    private function registerUser(TicketSaveRequest $request)
-    {
-        return User::instance()->batchSave([
-            'email' => $request->email,
-        ])
-            ;
-    }
-
-
-
-    /**
      * Set the first message by the user for a new ticket
      *
      * @param TicketSaveRequest $request
@@ -120,8 +103,7 @@ class TicketsController extends ModularController
             'person_id'   => Person::where('email', $request->eamil)->first()->id,
             'title'       => $request->title,
             'description' => $request->description,
-        ])
-            ;
+        ]);
     }
 
 
