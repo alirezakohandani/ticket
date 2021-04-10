@@ -34,7 +34,7 @@ trait TicketingRelatedWithPersonTrait
      */
     public static function isPersonExists(string $email)
     {
-        return static::where('email', $email')->exists();
+        return static::where('email', $email)->exists();
     }
 
 
