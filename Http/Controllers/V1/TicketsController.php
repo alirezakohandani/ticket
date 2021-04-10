@@ -27,9 +27,6 @@ class TicketsController extends ModularController
             $person_id = Person::where('email', $request->email)->first()->id;
             $ticket    = $this->createTicekt($request, $person_id);
             $message   = $this->setMessage($request, $ticket);
-            if ($ticket === null || $message === null) {
-                return $this->clientError(400); //TODO: response better replace
-            }
             return $this->success([
                 'ref_number' => $ticket->ref_number,
             ]);
@@ -40,9 +37,6 @@ class TicketsController extends ModularController
         $person  = $this->registerUser($request);
         $ticket  = $this->createTicekt($request, $person->id);
         $message = $this->setMessage($request, $ticket);
-        if ($ticket === null || $message === null) {
-            return $this->clientError(400); //TODO: response better replace
-        }
         return $this->success([
             'ref_number' => $ticket->ref_number,
         ]);
