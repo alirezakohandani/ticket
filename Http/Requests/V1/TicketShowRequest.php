@@ -3,13 +3,13 @@
 namespace Modules\Ticketing\Http\Requests\V1;
 
 use App\Models\Ticket;
-use App\Http\Abstracts\ModularListRequest;
+use App\Http\Abstracts\ModularFormRequest;
 
 
 /**
  * @property Ticket $model
  */
-class TicketShowRequest extends ModularListRequest
+class TicketShowRequest extends ModularFormRequest // list request is for list, when receiving more than one item is probable. Here you look for one and only one model.
 {
     /** @var string */
     protected $model_name = "Ticket";
@@ -18,24 +18,17 @@ class TicketShowRequest extends ModularListRequest
     protected $should_load_model = true;
 
     /** @var bool */
-    protected $should_load_model_with_slug = false;
+    protected $should_load_model_with_slug = true;
 
     /** @var bool */
-    protected $should_allow_create_mode = true;
+    protected $should_allow_create_mode = false;
+    
+    /** @var string */
+    protected $model_slug_attribute = "ref_number";
+    
+    /** @var string */
+    protected $model_slug_column = "ref_number";
 
-
-
-    /**
-     * Return ticket based on tracking code
-     *
-     * @param int $ref_number
-     *
-     * @return mixed
-     */
-    public function getTicketWithRefnumber(int $ref_number)
-    {
-        return $this->model->where('id', 50)->first();
-    }
 
 
 
@@ -44,8 +37,7 @@ class TicketShowRequest extends ModularListRequest
      */
     public function authorize()
     {
-        return $this->model->canList();
+        return $this->model->canList();  // (howabout ->canView()?)
     }
-
 
 }
