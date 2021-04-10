@@ -26,9 +26,9 @@ class TicketsController extends ModularController
 
             $person->registerUser($request);
         }
-        $person_id = Person::where('email', $request->email)->first()->id;
+        $person_id = $person->getPersonId($request);
         $ticket    = $request->model
-                             ->createTicekt($request, $person_id, $this->generateRefNumber());
+            ->createTicekt($request, $person_id, $this->generateRefNumber());
         $message   = $this->setMessage($request, $ticket);
         return $this->success([
             'ref_number' => $ticket->ref_number,
@@ -60,28 +60,6 @@ class TicketsController extends ModularController
                 ];
             }),
         ]);
-
-    }
-
-
-
-    /**
-     * Create new ticket
-     *
-     * @param TicketSaveRequest $request
-     * @param int               $person_id
-     *
-     * @return \App\Models\Ticket
-     */
-    private function createTicekt(TicketSaveRequest $request, int $person_id)
-    {
-        return $request->model->batchSave([
-            'person_id'  => $person_id,
-            'ref_number' => $this->generateRefNumber(),
-            'type'       => $request->type,
-            'status'     => 'pending',
-
-        ], ['email']);
 
     }
 

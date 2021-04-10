@@ -54,4 +54,14 @@ trait TicketingRelatedWithPersonTrait
         ]);
     }
 
+
+
+    /**
+     * @param string $email
+     */
+    public function getPersonId(TicketSaveRequest $request)
+    {
+        return Person::where('email', $request->email)->first()->id;
+    }
+
 }
