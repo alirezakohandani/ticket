@@ -20,10 +20,9 @@ class TicketsController extends ModularController
      *
      * @param TicketSaveRequest $request
      */
-    public function store(TicketSaveRequest $request)
+    public function store(TicketSaveRequest $request, Person $person)
     {
-
-        if (!Person::instance()->isPersonExists($request->email)) {
+        if (!$person->isPersonExists($request->email)) {
 
             $this->registerUser($request);
         }
