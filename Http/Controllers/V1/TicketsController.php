@@ -47,20 +47,18 @@ class TicketsController extends ModularController
      */
     public function show(TicketShowRequest $request)
     {
-        $ticket = $request->getTicketWithRefnumber($request->ref_number);
 
-        if ($ticket !== null) {
-            return $this->success([
-                'status'   => $ticket->status,
-                'title'    => $ticket->messages()->first()->title,
-                'messages' => $ticket->messages->map(function ($message) {
-                    return [
-                        'description' => $message->description,
-                    ];
-                }),
-            ]);
-        }
-        return $this->clientError();
+        return $this->success([
+            'id'       => hashid($request->model->id),
+            'status'   => $request->model->status,
+            'title'    => $request->model->messages()->first()->title,
+            'messages' => $request->model->messages->map(function ($message) {
+                return [
+                    'id'          => hashid($message->id),
+                    'description' => $message->description,
+                ];
+            }),
+        ]);
 
     }
 
@@ -103,7 +101,8 @@ class TicketsController extends ModularController
             'person_id'   => Person::where('email', $request->eamil)->first()->id,
             'title'       => $request->title,
             'description' => $request->description,
-        ]);
+        ])
+            ;
     }
 
 
