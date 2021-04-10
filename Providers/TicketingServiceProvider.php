@@ -3,6 +3,8 @@
 namespace Modules\Ticketing\Providers;
 
 use App\Http\Abstracts\ModularProvider;
+use App\Models\Person;
+use Modules\Ticketing\Entities\Traits\TicketingRelatedWithPersonTrait;
 use Modules\Ticketing\Http\Endpoints\V1\TicketSaveEndpoint;
 use Modules\Ticketing\Http\Endpoints\V1\TicketShowEndpoint;
 
@@ -15,7 +17,6 @@ class TicketingServiceProvider extends ModularProvider
     {
         $this->registerEndpoints();
         $this->registerModelTraits();
-
     }
 
 
@@ -40,7 +41,7 @@ class TicketingServiceProvider extends ModularProvider
      */
     private function registerModelTraits()
     {
-        $this->addModelTrait("TicketingRelatedWithPersonTrait", "Person");
+        $this->addModelTrait(TicketingRelatedWithPersonTrait::class, "Person");
     }
 
 
