@@ -23,23 +23,23 @@ class TicketsController extends ModularController
     public function store(TicketSaveRequest $request)
     {
 
-        if ($this->isPersonExists($request->email)) {
-            $person_id = Person::where('email', $request->email)->first()->id;
-            $ticket    = $this->createTicekt($request, $person_id);
-            $message   = $this->setMessage($request, $ticket);
+        if (!Person::instance()->isPersonExists($request->email)) {
+
+            $person  = $this->registerUser($request);
+            $ticket  = $this->createTicekt($request, $person->id);
+            $message = $this->setMessage($request, $ticket);
             return $this->success([
                 'ref_number' => $ticket->ref_number,
             ]);
 
-
         }
-
-        $person  = $this->registerUser($request);
-        $ticket  = $this->createTicekt($request, $person->id);
-        $message = $this->setMessage($request, $ticket);
+        $person_id = Person::where('email', $request->email)->first()->id;
+        $ticket    = $this->createTicekt($request, $person_id);
+        $message   = $this->setMessage($request, $ticket);
         return $this->success([
             'ref_number' => $ticket->ref_number,
         ]);
+
 
     }
 
