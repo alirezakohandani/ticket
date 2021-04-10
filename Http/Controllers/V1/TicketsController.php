@@ -28,8 +28,8 @@ class TicketsController extends ModularController
         }
         $person_id = $person->getPersonId($request);
         $ticket    = $request->model
-            ->createTicekt($request, $person_id, $this->generateRefNumber());
-        $message   = $this->setMessage($request, $ticket);
+                             ->createTicekt($request, $person_id, $this->generateRefNumber());
+        Message::instance()->setMessage($request, $ticket);
         return $this->success([
             'ref_number' => $ticket->ref_number,
         ]);
@@ -61,27 +61,6 @@ class TicketsController extends ModularController
             }),
         ]);
 
-    }
-
-
-
-    /**
-     * Set the first message by the user for a new ticket
-     *
-     * @param TicketSaveRequest $request
-     * @param Ticket            $ticket
-     *
-     * @return \App\Models\Message
-     */
-    private function setMessage(TicketSaveRequest $request, Ticket $ticket)
-    {
-        return Message::instance()->batchSave([
-            'ticket_id'   => $ticket->id,
-            'person_id'   => Person::where('email', $request->eamil)->first()->id,
-            'title'       => $request->title,
-            'description' => $request->description,
-        ])
-            ;
     }
 
 
