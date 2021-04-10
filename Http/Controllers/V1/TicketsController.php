@@ -88,7 +88,8 @@ class TicketsController extends ModularController
      */
     private function isPersonExists(string $email)
     {
-        return Person::where('email', $email)->first();
+        $person = Person::where('email', $email)->first();
+        return isset($person);
     }
 
 
