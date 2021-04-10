@@ -26,42 +26,45 @@ trait TicketingRelatedWithPersonTrait
 
 
     /**
-     * Checks if there is a person
+     * Checks if a person with the given email exists.
      *
      * @param string $email
      *
-     * @return mixed
+     * @return boolean
      */
-    public function isPersonExists(string $email)
+    public static function isPersonExists(string $email)
     {
-        $person = $this->where('email', $email)->first();
-        return isset($person);
+        return static::where('email', $email')->exists();
     }
 
 
 
     /**
-     * user registration
+     * register a new user with the given email address.
      *
-     * @param TicketSaveRequest $request
+     * @param string $email
      *
      * @return \App\Models\Person
      */
-    public function registerUser(TicketSaveRequest $request)
+    public static function registerUser(string $email)
     {
-        return $this->batchSave([
-            'email' => $request->email,
+        return static::batchCreate([
+            'email' => $email,
         ]);
     }
 
 
 
     /**
+     * get the id of the person with the given id.
+     *
      * @param string $email
+     *
+     * @return int
      */
-    public function getPersonId(TicketSaveRequest $request)
+    public static function getPersonId(string $email)
     {
-        return Person::where('email', $request->email)->first()->id;
+        return Person::where('email', $email)->select("id")->firstOrCreate([])->id;
     }
 
 }
