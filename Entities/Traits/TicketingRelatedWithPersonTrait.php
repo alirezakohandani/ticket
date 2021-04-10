@@ -2,6 +2,7 @@
 
 namespace Modules\Ticketing\Entities\Traits;
 
+use App\Models\Person;
 use App\Models\Ticket;
 
 
@@ -18,6 +19,21 @@ trait TicketingRelatedWithPersonTrait
     public function tickets()
     {
         $this->hasMany(Ticket::class);
+    }
+
+
+
+    /**
+     * Checks if there is a person
+     *
+     * @param string $email
+     *
+     * @return mixed
+     */
+    public function isPersonExists(string $email)
+    {
+        $person = $this->where('email', $email)->first();
+        return isset($person);
     }
 
 

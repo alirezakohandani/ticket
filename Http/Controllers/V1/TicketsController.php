@@ -80,21 +80,6 @@ class TicketsController extends ModularController
 
 
     /**
-     * Checks if there is a person
-     *
-     * @param string $email
-     *
-     * @return mixed
-     */
-    private function isPersonExists(string $email)
-    {
-        $person = Person::where('email', $email)->first();
-        return isset($person);
-    }
-
-
-
-    /**
      * Create new ticket
      *
      * @param TicketSaveRequest $request
