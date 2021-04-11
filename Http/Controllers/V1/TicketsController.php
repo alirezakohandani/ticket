@@ -66,6 +66,32 @@ class TicketsController extends ModularController
 
 
     /**
+     * Show user tickets along with related messages
+     *
+     * @return Response
+     */
+    public function showTicketsUser()
+    {
+        $result = [];
+        foreach (\user()->tickets as $ticket) {
+            $result[] = [
+                'id'       => hashid($ticket->id),
+                'status'   => $ticket->status,
+                'title'    => $ticket->messages()->first()->title,
+                'messages' => $ticket->messages->map(function ($message) {
+                    return [
+                        'id'          => hashid($message->id),
+                        'description' => $message->description,
+                    ];
+                }),
+            ];
+        }
+        return $this->success([$result]);
+    }
+
+
+
+    /**
      * Generates ref_number which is not in the table
      *
      * @return int
