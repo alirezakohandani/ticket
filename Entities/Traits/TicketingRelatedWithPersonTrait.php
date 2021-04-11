@@ -20,7 +20,7 @@ trait TicketingRelatedWithPersonTrait
      */
     public function tickets()
     {
-        $this->hasMany(Ticket::class);
+        return $this->hasMany(Ticket::class);
     }
 
 
