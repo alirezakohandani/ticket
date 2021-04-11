@@ -22,13 +22,12 @@ class TicketShowRequest extends ModularFormRequest // list request is for list, 
 
     /** @var bool */
     protected $should_allow_create_mode = false;
-    
+
     /** @var string */
     protected $model_slug_attribute = "ref_number";
-    
+
     /** @var string */
     protected $model_slug_column = "ref_number";
-
 
 
 
@@ -37,7 +36,8 @@ class TicketShowRequest extends ModularFormRequest // list request is for list, 
      */
     public function authorize()
     {
-        return $this->model->canList();  // (howabout ->canView()?)
+        return true;  // (howabout ->canView()?)
     }
+
 
 }
