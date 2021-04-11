@@ -5,6 +5,6 @@
   "order": 1200,
   "confidential": 0,
   "repo": "https://git.yasna.team/quark/ticketing.git",
-  "forced_parents": "Endpoint,Person",
+  "forced_parents": "Endpoint,Persons",
   "conditional_parents": ""
 }
