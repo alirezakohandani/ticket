@@ -44,6 +44,7 @@ class TicketingServiceProvider extends ModularProvider
     private function registerModelTraits()
     {
         $this->addModelTrait(TicketingRelatedWithPersonTrait::class, "Person");
+        $this->addModelTrait(TicketingRelatedWithPersonTrait::class, "User");
     }
 
 
