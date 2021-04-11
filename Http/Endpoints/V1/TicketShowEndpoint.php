@@ -15,7 +15,6 @@ use Modules\Ticketing\Http\Controllers\V1\TicketsController;
  * @apiGroup          Ticketing
  * @apiPermission     Guest
  * @apiParam {int}    ref_number
- * @apiParam {int}    hashid
  * @apiSuccessExample Success-Response:
  * HTTP/1.1 200 OK
  * {

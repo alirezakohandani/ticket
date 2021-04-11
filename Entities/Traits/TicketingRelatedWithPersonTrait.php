@@ -4,8 +4,6 @@ namespace Modules\Ticketing\Entities\Traits;
 
 use App\Models\Person;
 use App\Models\Ticket;
-use App\Models\User;
-use Modules\Ticketing\Http\Requests\V1\TicketSaveRequest;
 
 
 /**
@@ -20,7 +18,7 @@ trait TicketingRelatedWithPersonTrait
      */
     public function tickets()
     {
-        return $this->hasMany(Ticket::class);
+        return $this->hasMany(Ticket::class, 'person_id');
     }
 
 
