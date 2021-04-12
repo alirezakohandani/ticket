@@ -101,7 +101,7 @@ class TicketShowEndpoint extends EndpointAbstract
     {
         return 'Modules\Ticketing\Http\Controllers\V1\Admin';
     }
-
+    
 
 
     /**
@@ -109,6 +109,6 @@ class TicketShowEndpoint extends EndpointAbstract
      */
     public function getController(): string
     {
-        return 'Controller@index';
+        return 'TicketsController@index';
     }
 }

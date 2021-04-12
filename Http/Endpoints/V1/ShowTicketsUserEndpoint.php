@@ -17,6 +17,7 @@ use Modules\Ticketing\Http\Controllers\V1\TicketsController;
  * @apiSuccessExample Success-Response:
  * HTTP/1.1 200 OK
  * {
+ *      "status": 200,
  *      "metadata": {
  *          "count": 2
  *      },
