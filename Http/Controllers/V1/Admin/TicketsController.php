@@ -2,9 +2,10 @@
 
 namespace Modules\Ticketing\Http\Controllers\V1\Admin;
 
-
-use App\Http\Abstracts\ModularController;
 use App\Models\Ticket;
+use App\Http\Abstracts\ModularController;
+use \Symfony\Component\HttpFoundation\Response;
+use Modules\Ticketing\Http\Requests\V1\TicketCloseRequest;
 
 
 class TicketsController extends ModularController
@@ -33,5 +34,27 @@ class TicketsController extends ModularController
             ];
         }
         return $this->success([$result]);
+    }
+
+
+
+    /**
+     * Managers licensed to close tickets can close tickets
+     *
+     * @param TicketCloseRequest $request
+     *
+     * @return Response
+     */
+    public function close(TicketCloseRequest $request)
+    {
+        $request->model->closeStatus();
+        return $this->success([
+            'ref_number'       => $request->model->ref_number,
+            'status'           => $request->model->status,
+            'developerMessage' => trans("ticketing::developer.closed_status"),
+            'userMessage'      => trans("ticketing::user.closed_status"),
+        ], [
+            'id' => hashid($request->model->id),
+        ]);
     }
 }

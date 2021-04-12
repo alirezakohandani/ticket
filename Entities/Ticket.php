@@ -46,14 +46,14 @@ class Ticket extends ModularModel
 
 
     /**
-     * get the main meta fields of the table.
+     * Changes the status of the ticket to closed
      *
-     * @return array
+     * @return boolean
      */
-    public function mainMetaFields()
+    public function closeStatus()
     {
-        return [
-            //TODO: Fill this with the names of your meta fields, or remove the method if you do not want meta fields at all.
-        ];
+        return $this->update([
+            'status' => 'closed',
+        ]);
     }
 }
