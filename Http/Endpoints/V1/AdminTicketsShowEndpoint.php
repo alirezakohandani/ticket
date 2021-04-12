@@ -1,13 +1,13 @@
 <?php
 
-namespace Modules\Ticketing\Http\Endpoints\V1\Admin;
+namespace Modules\Ticketing\Http\Endpoints\V1;
 
 use Modules\Endpoint\Services\EndpointAbstract;
 use Modules\Ticketing\Http\Controllers\V1\Controller;
 
 /**
  * @api               {GET}
- *                    /api/modular/v1/ticketing-admin/-ticket-show
+ *                    /api/modular/v1/ticketing-admin-tickets-show
  * @apiDescription    Show tickets for managers who have access to reply and close tickets
  * @apiVersion        1.0.0
  * @apiName           show tickets
@@ -58,11 +58,8 @@ use Modules\Ticketing\Http\Controllers\V1\Controller;
  * }
  * @method Admin\TicketsController controller()
  */
-class TicketShowEndpoint extends EndpointAbstract
+class AdminTicketsShowEndpoint extends EndpointAbstract
 {
-    private $dd;
-
-
 
     /**
      * @inheritdoc
@@ -101,7 +98,7 @@ class TicketShowEndpoint extends EndpointAbstract
     {
         return 'Modules\Ticketing\Http\Controllers\V1\Admin';
     }
-    
+
 
 
     /**
