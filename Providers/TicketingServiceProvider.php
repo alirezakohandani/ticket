@@ -8,6 +8,7 @@ use Modules\Ticketing\Entities\Traits\TicketingRelatedWithPersonTrait;
 use Modules\Ticketing\Http\Endpoints\V1\ShowTicketsUserEndpoint;
 use Modules\Ticketing\Http\Endpoints\V1\TicketSaveEndpoint;
 use Modules\Ticketing\Http\Endpoints\V1\TicketShowEndpoint;
+use Modules\Ticketing\Http\Endpoints\V1\Admin\TicketShowEndpoint as AdminTicketShowEndpoint;
 
 class TicketingServiceProvider extends ModularProvider
 {
@@ -32,6 +33,7 @@ class TicketingServiceProvider extends ModularProvider
         endpoint()->register(TicketSaveEndpoint::class);
         endpoint()->register(TicketShowEndpoint::class);
         endpoint()->register(ShowTicketsUserEndpoint::class);
+        endpoint()->register(AdminTicketShowEndpoint::class);
     }
 
 
