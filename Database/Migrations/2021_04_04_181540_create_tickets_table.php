@@ -21,7 +21,7 @@ class CreateTicketsTable extends ModularMigration
 
             $table->integer('ref_number');
             $table->enum('type', ['immediate', 'normal', 'nonsignificant']);
-            $table->enum('status', ['pending', 'anwserd', 'finished']);
+            $table->enum('status', ['pending', 'anwserd', 'closed']);
             $table->timestamps();
             $this->additionalMigrations($table);
         });
