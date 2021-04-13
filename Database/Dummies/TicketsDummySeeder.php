@@ -62,6 +62,13 @@ class TicketsDummySeeder extends ModularDummySeeder
             "status"     => $status[array_rand($status)],
         ];
 
-        Ticket::batchCreate($data);
+        $ticket = Ticket::batchCreate($data);
+        $ticket->messages()->create([
+            "ticket_id"   => $ticket->id,
+            "person_id"   => $ticket->person_id,
+            "title"       => Dummy::persianTitle(),
+            "description" => Dummy::persianText(),
+
+        ]);
     }
 }
