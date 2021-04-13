@@ -6,7 +6,7 @@ use Modules\Endpoint\Services\EndpointAbstract;
 use Modules\Ticketing\Http\Controllers\V1\TicketsController;
 
 /**
- * @api               {POST}
+ * @api               {PUT}
  *                    /api/modular/v1/ticketing-admin-status-change
  * @apiDescription    Administrators with reply access can change the status of the ticket
  * @apiVersion        1.0.0
@@ -68,7 +68,7 @@ class AdminStatusChangeEndpoint extends EndpointAbstract
      */
     public function getValidMethod(): string
     {
-        return static::HTTP_POST;
+        return static::HTTP_PUT;
     }
 
 
@@ -88,7 +88,7 @@ class AdminStatusChangeEndpoint extends EndpointAbstract
      */
     public function getController(): string
     {
-        return 'TicketsController@test';
+        return 'TicketsController@updateStatus';
     }
 }
 
