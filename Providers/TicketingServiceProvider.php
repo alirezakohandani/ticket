@@ -3,6 +3,7 @@
 namespace Modules\Ticketing\Providers;
 
 use App\Http\Abstracts\ModularProvider;
+use Modules\Ticketing\Console\MessageCommand;
 use Modules\Ticketing\Entities\Traits\TicketingRelatedWithPersonTrait;
 use Modules\Ticketing\Http\Endpoints\V1\AdminStatusChangeEndpoint;
 use Modules\Ticketing\Http\Endpoints\V1\AdminTicketCloseEndpoint;
@@ -10,7 +11,6 @@ use Modules\Ticketing\Http\Endpoints\V1\AdminTicketsShowEndpoint;
 use Modules\Ticketing\Http\Endpoints\V1\ShowTicketsUserEndpoint;
 use Modules\Ticketing\Http\Endpoints\V1\TicketSaveEndpoint;
 use Modules\Ticketing\Http\Endpoints\V1\TicketShowEndpoint;
-
 
 
 class TicketingServiceProvider extends ModularProvider
@@ -22,6 +22,7 @@ class TicketingServiceProvider extends ModularProvider
     {
         $this->registerEndpoints();
         $this->registerModelTraits();
+        $this->registerArtisanCommands();
     }
 
 
@@ -54,5 +55,16 @@ class TicketingServiceProvider extends ModularProvider
         $this->addModelTrait(TicketingRelatedWithPersonTrait::class, "User");
     }
 
+
+
+    /**
+     * register artisan commands
+     *
+     * @return void
+     */
+    private function registerArtisanCommands()
+    {
+        $this->addArtisan(MessageCommand::class);
+    }
 
 }
