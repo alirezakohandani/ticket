@@ -56,4 +56,20 @@ class Ticket extends ModularModel
             'status' => 'closed',
         ]);
     }
+
+
+
+    /**
+     * Changes the status of the ticket
+     *
+     * @param string $status
+     *
+     * @return boolean
+     */
+    public function changeStatus(string $status)
+    {
+        return $this->update([
+            'status' => $status,
+        ]);
+    }
 }
