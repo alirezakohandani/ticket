@@ -57,4 +57,26 @@ class TicketsController extends ModularController
             'id' => hashid($request->model->id),
         ]);
     }
+
+
+
+    /**
+     *Administrators with reply access can change the status of the ticket
+     *
+     * @param TicketCloseRequest $request
+     *
+     * @return Response
+     */
+    public function updateStatus(TicketCloseRequest $request)
+    {
+        $request->model->changeStatus($request->status);
+        return $this->success([
+            'ref_number'       => $request->model->ref_number,
+            'status'           => $request->model->status,
+            'developerMessage' => trans("ticketing::developer.change_status"),
+            'userMessage'      => trans("ticketing::user.change_status"),
+        ], [
+            'id' => hashid($request->model->id),
+        ]);
+    }
 }
