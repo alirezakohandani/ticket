@@ -58,7 +58,8 @@ class AdminTicketCloseEndpoint extends EndpointAbstract
      */
     public function hasPermit(): bool
     {
-        return user()->exists && user()->can('tickets.close');
+        return (user()->exists && user()->can('tickets.close')) ||
+               (user()->exists && user()->isSuperadmin());
     }
 
 

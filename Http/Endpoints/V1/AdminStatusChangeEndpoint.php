@@ -58,7 +58,8 @@ class AdminStatusChangeEndpoint extends EndpointAbstract
      */
     public function hasPermit(): bool
     {
-        return user()->exists && user()->can("tickets.reply");
+        return (user()->exists && user()->can("tickets.reply")) ||
+               (user()->exists && user()->isSuperadmin());
     }
 
 
