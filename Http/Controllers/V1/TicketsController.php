@@ -28,10 +28,10 @@ class TicketsController extends ModularController
         }
         $person_id = $person->getPersonId($request->email);
         $ticket    = $request->model
-            ->createTicekt($request, $person_id, $this->generateRefNumber());
+             ->createTicekt($request, $person_id, $this->generateRefNumber());
         Message::instance()->setMessage($request, $ticket);
         return $this->success([
-            'ref_number' => $ticket->ref_number,
+             'ref_number' => $ticket->ref_number,
         ]);
 
 
@@ -50,15 +50,15 @@ class TicketsController extends ModularController
     {
 
         return $this->success([
-            'id'       => hashid($request->model->id),
-            'status'   => $request->model->status,
-            'title'    => $request->model->messages()->first()->title,
-            'messages' => $request->model->messages->map(function ($message) {
-                return [
-                    'id'          => hashid($message->id),
-                    'description' => $message->description,
-                ];
-            }),
+             'id'       => hashid($request->model->id),
+             'status'   => $request->model->status,
+             'title'    => $request->model->messages()->first()->title,
+             'messages' => $request->model->messages->map(function ($message) {
+                 return [
+                      'id'          => hashid($message->id),
+                      'description' => $message->description,
+                 ];
+             }),
         ]);
 
     }
@@ -75,15 +75,15 @@ class TicketsController extends ModularController
         $result = [];
         foreach (\user()->tickets as $ticket) {
             $result[] = [
-                'id'       => hashid($ticket->id),
-                'status'   => $ticket->status,
-                'title'    => $ticket->messages()->first()->title,
-                'messages' => $ticket->messages->map(function ($message) {
-                    return [
-                        'id'          => hashid($message->id),
-                        'description' => $message->description,
-                    ];
-                }),
+                 'id'       => hashid($ticket->id),
+                 'status'   => $ticket->status,
+                 'title'    => $ticket->messages()->first()->title,
+                 'messages' => $ticket->messages->map(function ($message) {
+                     return [
+                          'id'          => hashid($message->id),
+                          'description' => $message->description,
+                     ];
+                 }),
             ];
         }
         return $this->success([$result]);
@@ -98,6 +98,7 @@ class TicketsController extends ModularController
      */
     protected function generateRefNumber()
     {
+        //TODO we don't need ref_number in table, the tracking number generates based on id
         do {
 
             $ref_number = TrackingNumber::id2No(rand(1, 999999));

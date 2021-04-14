@@ -6,7 +6,7 @@ use App\Classes\Dummy;
 use App\Models\Message;
 use App\Models\Ticket;
 use Illuminate\Console\Command;
-
+//TODO  We should be able to provide the fake data just by running the dummy without running other artisan commands.
 class MessageCommand extends Command
 {
     /**
