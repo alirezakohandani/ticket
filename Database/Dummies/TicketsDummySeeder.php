@@ -7,6 +7,7 @@ use App\Classes\TrackingNumber;
 use App\Http\Abstracts\ModularDummySeeder;
 use App\Models\Person;
 use App\Models\Ticket;
+use App\Models\User;
 
 //TODO  We should be able to provide the fake data just by running the dummy without running other artisan commands.
 class TicketsDummySeeder extends ModularDummySeeder
@@ -50,8 +51,7 @@ class TicketsDummySeeder extends ModularDummySeeder
      */
     private function seedOneUser()
     {
-        //TODO You have to use the User model to have real users,the Person model also includes Organizations.
-        $persons = Person::all('id');
+        $persons = User::all('id');
         $type    = ['immediate', 'normal', 'nonsignificant'];
         $status  = ['pending', 'anwserd', 'closed'];
 
