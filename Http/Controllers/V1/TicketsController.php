@@ -28,7 +28,7 @@ class TicketsController extends ModularController
         }
         $person_id = $person->getPersonId($request->email);
         $ticket    = $request->model
-             ->createTicekt($request, $person_id, $this->generateRefNumber());
+             ->createTicket($request, $person_id, $this->generateRefNumber());
         Message::instance()->setMessage($request, $ticket);
         return $this->success([
              'ref_number' => $ticket->ref_number,

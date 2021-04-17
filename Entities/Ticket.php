@@ -31,10 +31,9 @@ class Ticket extends ModularModel
      * @param int               $person_id
      *
      * @return \App\Models\Ticket
-     *///TODO Misspellings (createTicket)
-    public function createTicekt(TicketSaveRequest $request, int $person_id, int $ref_number)
+     */
+    public function createTicket(TicketSaveRequest $request, int $person_id, int $ref_number)
     {
-        //TOTO As a suggest you can use this code directly in the controller instead of having a method with 3 inputs
         return $request->model->batchSave([
              'person_id'  => $person_id,
              'ref_number' => $ref_number,
