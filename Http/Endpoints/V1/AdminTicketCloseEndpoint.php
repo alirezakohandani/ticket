@@ -78,7 +78,7 @@ class AdminTicketCloseEndpoint extends EndpointAbstract
      */
     public function getControllerNamespace(): string
     {
-        return 'Modules\Ticketing\Http\Controllers\V1\Admin';
+        return 'Modules\Ticketing\Http\Controllers\V1';
     }
 
 
@@ -88,6 +88,6 @@ class AdminTicketCloseEndpoint extends EndpointAbstract
      */
     public function getController(): string
     {
-        return 'TicketsController@close';
+        return 'AdminTicketsController@close';
     }
 }

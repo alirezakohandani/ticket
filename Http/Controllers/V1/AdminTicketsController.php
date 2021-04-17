@@ -8,7 +8,7 @@ use \Symfony\Component\HttpFoundation\Response;
 use Modules\Ticketing\Http\Requests\V1\TicketCloseRequest;
 
 // TODO As a suggest you can put all your controllers under the V1 directory to avoid changing the controller namespace the endpoints
-class TicketsController extends ModularController
+class AdminTicketsController extends ModularController
 {
 
     /**

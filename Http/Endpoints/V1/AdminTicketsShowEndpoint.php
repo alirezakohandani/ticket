@@ -96,7 +96,7 @@ class AdminTicketsShowEndpoint extends EndpointAbstract
      */
     public function getControllerNamespace(): string
     {
-        return 'Modules\Ticketing\Http\Controllers\V1\Admin';
+        return 'Modules\Ticketing\Http\Controllers\V1';
     }
 
 
@@ -106,6 +106,6 @@ class AdminTicketsShowEndpoint extends EndpointAbstract
      */
     public function getController(): string
     {
-        return 'TicketsController@index';
+        return 'AdminTicketsController@index';
     }
 }
