@@ -99,6 +99,6 @@ class TicketSaveEndpoint extends EndpointAbstract
      */
     public function getController(): string
     {
-        return 'AdminTicketsController@store';
+        return 'TicketsController@store';
     }
 }

@@ -102,7 +102,7 @@ class ShowTicketsUserEndpoint extends EndpointAbstract
      */
     public function getController(): string
     {
-        return 'AdminTicketsController@showTicketsUser';
+        return 'TicketsController@showTicketsUser';
     }
 }
 
