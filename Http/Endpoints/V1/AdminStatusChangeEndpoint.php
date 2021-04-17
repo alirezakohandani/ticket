@@ -39,7 +39,7 @@ use Modules\Ticketing\Http\Controllers\V1\TicketsController;
  *      "moreInfo": "endpoint.moreInfo.endpoint-403",
  *      "errors": []
  * }
- * @method Admin\TicketsController controller()
+ * @method TicketsController controller()
  */
 class AdminStatusChangeEndpoint extends EndpointAbstract
 {
@@ -78,7 +78,7 @@ class AdminStatusChangeEndpoint extends EndpointAbstract
      */
     public function getControllerNamespace(): string
     {
-        return 'Modules\Ticketing\Http\Controllers\V1\Admin';
+        return 'Modules\Ticketing\Http\Controllers\V1';
     }
 
 
@@ -88,7 +88,7 @@ class AdminStatusChangeEndpoint extends EndpointAbstract
      */
     public function getController(): string
     {
-        return 'TicketsController@updateStatus';
+        return 'AdminTicketsController@updateStatus';
     }
 }
 
