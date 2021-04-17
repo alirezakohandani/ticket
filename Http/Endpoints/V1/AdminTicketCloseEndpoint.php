@@ -58,9 +58,7 @@ class AdminTicketCloseEndpoint extends EndpointAbstract
      */
     public function hasPermit(): bool
     {
-        //TODO create the TicketPermitsTrait and define the can method. use the permission method  in the request layer
-        return (user()->exists && user()->can('tickets.close')) ||
-             (user()->exists && user()->isSuperadmin());
+        return true;
     }
 
 

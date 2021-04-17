@@ -14,13 +14,14 @@ class TicketCloseRequest extends ModularFormRequest
     protected $model_name = "Ticket";
 
     /** @var bool */
-    protected $should_allow_create_mode = false;
-    //TODO: Remove if you don't need.
+    protected $should_load_model = true;
 
     /** @var bool */
     protected $should_load_model_with_slug = true;
 
-    //TODO: Remove if you don't need.
+    /** @var bool */
+    protected $should_allow_create_mode = false;
+
     /** @var string */
     protected $model_slug_attribute = "ref_number";
 
@@ -36,7 +37,7 @@ class TicketCloseRequest extends ModularFormRequest
     {
         return [
             'ref_number' => "required|int",
-            'status'     => "required|in:closed",
+            'status'     => "required|in:pending,anwserd,closed",
         ];
     }
 
@@ -50,6 +51,16 @@ class TicketCloseRequest extends ModularFormRequest
         return [
             'status',
         ];
+    }
+
+
+
+    /**
+     * @inheritdoc
+     */
+    public function authorize()
+    {
+        return $this->model->canEdit();
     }
 
 
