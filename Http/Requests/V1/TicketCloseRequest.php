@@ -37,7 +37,7 @@ class TicketCloseRequest extends ModularFormRequest
     {
         return [
             'ref_number' => "required|int",
-            'status'     => "required|in:closed",
+            'status'     => "required|string|in:closed",
         ];
     }
 
