@@ -25,8 +25,8 @@ use Modules\Ticketing\Http\Controllers\V1\TicketsController;
  *       "results": {
  *          "ref_number": 21646355
  *          "status": "answerd"
- *          "developerMessage": trans(ticketing::developer.closed)
- *          "userMessage": trans(ticketing::user.closed)
+ *          "developerMessage": "Ticket status changed successfully"
+ *          "userMessage": "Ticket status changed successfully"
  *      }
  * }
  * @apiErrorExample
