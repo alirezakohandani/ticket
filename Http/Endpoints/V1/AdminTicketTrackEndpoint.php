@@ -91,6 +91,6 @@ class AdminTicketTrackEndpoint extends EndpointAbstract
      */
     public function getController(): string
     {
-        return 'AdminTicketsController@test';
+        return 'AdminTicketsController@reply';
     }
 }
