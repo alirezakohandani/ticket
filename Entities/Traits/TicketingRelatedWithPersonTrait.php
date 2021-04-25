@@ -4,6 +4,7 @@ namespace Modules\Ticketing\Entities\Traits;
 
 use App\Models\Person;
 use App\Models\Ticket;
+use Illuminate\Database\Eloquent\Collection;
 
 
 /**
@@ -63,6 +64,24 @@ trait TicketingRelatedWithPersonTrait
     public static function getPersonId(string $email)
     {
         return Person::where('email', $email)->select("id")->firstOrCreate([])->id;
+    }
+
+
+
+    /**
+     * Returns all users who have the role of manager
+     *
+     * @return Collection
+     */
+    public function adminUsers()
+    {
+        return $this->with([
+            'roles' => function ($q) {
+                $q->where('slug', 'manager');
+            },
+        ])->get()
+            ;
+
     }
 
 }
