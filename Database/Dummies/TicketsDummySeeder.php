@@ -45,7 +45,7 @@ class TicketsDummySeeder extends ModularDummySeeder
 
 
     /**
-     * seed one ticket into the `tickets` table.
+     * seed one Ticketing into the `tickets` table.
      *
      * @return void
      */
@@ -56,22 +56,26 @@ class TicketsDummySeeder extends ModularDummySeeder
         $status  = ['pending', 'anwserd', 'closed'];
 
         $data = [
-             "person_id"  => Person::where('id', rand(1, count($persons)))->select("id")
-                                   ->firstOrCreate([])
-                  ->id,
-             "ref_number" => TrackingNumber::id2No(rand(1, 999999)),
-             "type"       => $type[array_rand($type)],
-             "status"     => $status[array_rand($status)],
+            "person_id"  => Person::where('id', rand(1, count($persons)))->select("id")
+                                  ->firstOrCreate([])
+                ->id,
+            "ref_number" => TrackingNumber::id2No(rand(1, 999999)),
+            "type"       => $type[array_rand($type)],
+            "status"     => $status[array_rand($status)],
         ];
 
-        $ticket = Ticket::batchCreate($data);
-        $ticket->messages()->create([
-             "ticket_id"   => $ticket->id,
-             "person_id"   => $ticket->person_id,
-             "title"       => Dummy::persianTitle(),
-             "description" => Dummy::persianText(),
+        $ticket        = Ticket::batchCreate($data);
+        $random_numebr = rand(1, 10);
+        for ($i = 1; $i <= $random_numebr; $i++) {
+            $ticket->messages()->create([
+                "ticket_id"   => $ticket->id,
+                "person_id"   => $ticket->person_id,
+                "title"       => Dummy::persianTitle(),
+                "description" => Dummy::persianText(),
 
-        ])
-        ;
+            ])
+            ;
+        }
+
     }
 }
