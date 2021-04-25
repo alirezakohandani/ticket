@@ -35,6 +35,7 @@ class AdminTicketReplyRequest extends ModularFormRequest
      */
     public function authorize()
     {
+
         return $this->model->canEdit();
     }
 
@@ -52,4 +53,15 @@ class AdminTicketReplyRequest extends ModularFormRequest
     }
 
 
+
+    /**
+     * @inheritdoc
+     */
+    protected function fillableFields()
+    {
+        return [
+            'ref_number',
+            'description',
+        ];
+    }
 }
