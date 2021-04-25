@@ -4,6 +4,7 @@ namespace Modules\Ticketing\Http\Controllers\V1;
 
 use App\Models\Ticket;
 use App\Http\Abstracts\ModularController;
+use Modules\Ticketing\Http\Requests\V1\AdminTicketReplyRequest;
 use Modules\Ticketing\Http\Requests\V1\TicketChangeStatusRequest;
 use \Symfony\Component\HttpFoundation\Response;
 use Modules\Ticketing\Http\Requests\V1\TicketCloseRequest;
@@ -82,5 +83,26 @@ class AdminTicketsController extends ModularController
         ], [
             'id' => hashid($request->model->id),
         ]);
+    }
+
+
+
+    /**
+     *Managers can reply to tickets
+     *
+     * @param AdminTicketReplyRequest $request
+     */
+    public function reply(AdminTicketReplyRequest $request)
+    {
+        if ($request->model->ticketStatus() !== "closed") {
+            Message::instance()->batchSave([
+                'ticket_id'   => $request->model->id,
+                'person_id'   => user()->id,
+                'description' => $request->description,
+            ])
+            ;
+            $request->model->changeStatus('anwserd');
+
+        }
     }
 }

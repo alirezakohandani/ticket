@@ -75,4 +75,16 @@ class Ticket extends ModularModel
             'status' => $status,
         ]);
     }
+
+
+
+    /**
+     * Return ticket status
+     *
+     * @return string
+     */
+    public function ticketStatus()
+    {
+        return $this->status;
+    }
 }
