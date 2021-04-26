@@ -14,6 +14,7 @@ use Modules\Ticketing\Http\Endpoints\V1\ShowTicketsUserEndpoint;
 use Modules\Ticketing\Http\Endpoints\V1\TicketSaveEndpoint;
 use Modules\Ticketing\Http\Endpoints\V1\TicketShowEndpoint;
 use Modules\Ticketing\Listeners\SendEmail;
+use Modules\Ticketing\Notifications\SendEmailToManagerNotification;
 
 
 class TicketingServiceProvider extends ModularProvider
@@ -27,6 +28,7 @@ class TicketingServiceProvider extends ModularProvider
         $this->registerModelTraits();
         $this->registerArtisanCommands();
         $this->registerEvents();
+        $this->registerNotifications();
     }
 
 
@@ -80,6 +82,20 @@ class TicketingServiceProvider extends ModularProvider
     private function registerEvents()
     {
         $this->listen(TicketCreated::class, SendEmail::class);
+    }
+
+    /**
+     * register notifications
+     *
+     * @return void
+     */
+    private function registerNotifications()
+    {
+        if (!$this->canUseModule("Notifier")) {
+            return;
+        }
+
+        SendEmailToManagerNotification::register();
     }
 
 }

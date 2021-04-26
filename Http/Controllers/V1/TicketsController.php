@@ -8,6 +8,7 @@ use App\Models\Message;
 use App\Models\Person;
 use App\Models\User;
 use App\Models\Ticket;
+use Modules\Ticketing\Events\TicketCreated;
 use Modules\Ticketing\Http\Requests\V1\TicketSaveRequest;
 use Modules\Ticketing\Http\Requests\V1\TicketShowRequest;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,6 +31,7 @@ class TicketsController extends ModularController
         $ticket    = $request->model
              ->createTicket($request, $person_id, $this->generateRefNumber());
         Message::instance()->setMessage($request, $ticket);
+        event(new TicketCreated($ticket, \user()));
         return $this->success([
              'ref_number' => $ticket->ref_number,
         ]);
