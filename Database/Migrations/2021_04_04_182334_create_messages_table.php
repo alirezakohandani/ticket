@@ -22,7 +22,7 @@ class CreateMessagesTable extends ModularMigration
             $table->unsignedInteger('person_id');
             $table->foreign('person_id')->references('id')->on('persons')->onDelete('cascade');
 
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->text('description');
             $table->timestamps();
             $this->additionalMigrations($table);
