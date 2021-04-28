@@ -3,6 +3,7 @@
 namespace Modules\Ticketing\Listeners;
 
 use App\Http\Abstracts\ModularListener;
+use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Notification;
 use Modules\Ticketing\Events\TicketCreated;
@@ -24,11 +25,11 @@ class SendEmail extends ModularListener implements ShouldQueue
      */
     public function handle(TicketCreated $event)
     {
-        $event->user->adminUsers()->map(function ($user) use ($event) {
-            Notification::send($user,
-                new SendEmailToManagerNotification($event->ticket->ref_number));
-        })
-        ;
-
+        foreach (User::all() as $user) {
+            if ($user->isAdmin()) {
+                Notification::send($user,
+                    new SendEmailToManagerNotification($event->ticket->ref_number));
+            }
+        }
     }
 }
