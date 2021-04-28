@@ -79,15 +79,18 @@ class SendEmailToManagerNotification extends Notification
      */
     protected function toEmail($notifiable)
     {
-        $subject = trans('ticketing::notification.title');
-        $msg     = trans('ticketing::notification.notification.email', [
+        $subject = trans('ticketing::notifications.title');
+        $msg     = trans('ticketing::notifications.notification.email', [
             'ref_number' => $this->ref_number,
         ]);
 
-        return (new Swift_Message($subject))
+
+        return (new \Swift_Message($subject))
             ->setTo($notifiable->email)
             ->setBody($msg)
             ;
+
+
     }
 
 
