@@ -31,7 +31,7 @@ class TicketsController extends ModularController
         $ticket    = $request->model
              ->createTicket($request, $person_id, $this->generateRefNumber());
         Message::instance()->setMessage($request, $ticket);
-        event(new TicketCreated($ticket, \user()));
+        event(new TicketCreated($ticket));
         return $this->success([
              'ref_number' => $ticket->ref_number,
         ]);
