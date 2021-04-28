@@ -12,20 +12,15 @@ class TicketCreated extends ModularEvent
     /** @var Ticket */
     public $ticket;
 
-    /** @var User */
-    public $user;
-
 
 
     /**
      * Create a new event instance.
      *
      * @param Ticket $ticket
-     * @param User   $user
      */
-    public function __construct(Ticket $ticket, User $user)
+    public function __construct(Ticket $ticket)
     {
         $this->ticket = $ticket;
-        $this->user   = $user;
     }
 }
