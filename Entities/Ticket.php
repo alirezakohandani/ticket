@@ -49,12 +49,11 @@ class Ticket extends ModularModel
     /**
      * Changes the status of the ticket to closed
      *
-     * @return boolean
+     * @return Ticket
      */
     public function closeStatus()
     {
-        //TODO As a suggest you can use batchSave method
-        return $this->update([
+        return $this->batchSave([
             'status' => 'closed',
         ]);
     }
@@ -66,12 +65,11 @@ class Ticket extends ModularModel
      *
      * @param string $status
      *
-     * @return boolean
+     * @return Ticket
      */
     public function changeStatus(string $status)
     {
-        //TODO As a suggest you can use batchSave method
-        return $this->update([
+        return $this->batchSave([
             'status' => $status,
         ]);
     }
