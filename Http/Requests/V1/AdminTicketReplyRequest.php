@@ -47,7 +47,7 @@ class AdminTicketReplyRequest extends ModularFormRequest
     public function rules()
     {
         return [
-            'ref_number'  => "required|int",
+            'ref_number'  => "required|numeric|max:9",
             'description' => "required|string",
         ];
     }
