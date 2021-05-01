@@ -32,11 +32,25 @@ class TicketShowRequest extends ModularFormRequest // list request is for list, 
 
 
     /**
+     * get the main validation rules.
+     *
+     * @return array
+     */
+    public function mainRules()
+    {
+        return [
+            'ref_number' => "required|numeric|max:9",
+        ];
+    }
+
+
+
+    /**
      * @inheritdoc
      */
     public function authorize()
     {
-        return true;  // (howabout ->canView()?)
+        return true;
     }
 
 
