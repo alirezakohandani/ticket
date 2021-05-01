@@ -47,4 +47,16 @@ trait TicketPermitsTrait
     {
         return user()->can("general.form-maker.$permit");
     }
+
+
+
+    /**
+     * determine if the online user is permitted to get a list-view of the records.
+     *
+     * @return bool
+     */
+    public static function canList()
+    {
+        return user()->can(Permissions::PERMIT_LIST);
+    }
 }
