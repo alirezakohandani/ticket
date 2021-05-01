@@ -76,7 +76,7 @@ class AdminTicketsShowEndpoint extends EndpointAbstract
      */
     public function hasPermit(): bool
     {
-        return user()->exists && user()->canAny(["tickets.reply", "tickets.close"]);
+        return user()->exists;
     }
 
 
