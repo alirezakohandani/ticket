@@ -7,6 +7,7 @@ use App\Classes\TrackingNumber;
 use App\Http\Abstracts\ModularController;
 use App\Models\Message;
 use App\Models\Person;
+use App\Models\Ticket;
 use Modules\Ticketing\Events\TicketCreated;
 use Modules\Ticketing\Http\Requests\V1\TicketSaveRequest;
 use Modules\Ticketing\Http\Requests\V1\TicketShowRequest;
@@ -63,7 +64,6 @@ class TicketsController extends ModularController
      */
     public function show(TicketShowRequest $request)
     {
-
         return $this->success([
             'id'       => hashid($request->model->id),
             'status'   => $request->model->status,
@@ -85,23 +85,11 @@ class TicketsController extends ModularController
      *
      * @return Response
      */
-    public function showTicketsUser(SimpleListRequest $request)
+    public function showTicketsUser()
     {
-        $result = [];
-        foreach (\user()->tickets as $ticket) {
-            $result[] = [
-                'id'       => hashid($ticket->id),
-                'status'   => $ticket->status,
-                'title'    => $ticket->messages()->first()->title,
-                'messages' => $ticket->messages->map(function ($message) {
-                    return [
-                        'id'          => hashid($message->id),
-                        'description' => $message->description,
-                    ];
-                }),
-            ];
-        }
-        return $this->success([$result]);
+        $tickets = \user()->tickets;
+        $result  = Ticket::collectionResourceArray($tickets, ["id", "title", "status", "Messages"]);
+        return $this->success($result);
     }
 
 
