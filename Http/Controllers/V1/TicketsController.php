@@ -24,7 +24,7 @@ class TicketsController extends ModularController
     {
         if (!$person->isPersonExists($request->email)) {
 
-            $person->registerUser($request->email);
+            $person = $person->registerUser($request->email);
         }
 
         $person_id = $person->getPersonId($request->email);
@@ -39,7 +39,7 @@ class TicketsController extends ModularController
 
         Message::instance()->batchSave([
             'ticket_id'   => $ticket->id,
-            'person_id'   => 2,
+            'person_id'   => $person_id ?? $person->id,
             'title'       => $request->title,
             'description' => $request->description,
         ])
