@@ -4,15 +4,16 @@ namespace Modules\Ticketing\Entities;
 
 use App\Http\Abstracts\ModularModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Ticketing\Entities\Traits\StatusResourcesTrait;
+use Modules\Ticketing\Entities\Traits\TestResourcesTrait;
 use Modules\Ticketing\Entities\Traits\TestTrait;
 use Modules\Ticketing\Entities\Traits\TicketPermitsTrait;
-use Modules\Ticketing\Http\Requests\V1\TicketSaveRequest;
 
 class Ticket extends ModularModel
 {
     use SoftDeletes;
     use TicketPermitsTrait;
-    use TestTrait;
+    use StatusResourcesTrait;
 
     /**
      * Get the messages for the ticket.
@@ -81,18 +82,6 @@ class Ticket extends ModularModel
                 'description' => $message->description,
             ];
         });
-    }
-
-
-
-    /**
-     * get status resource.
-     *
-     * @return string|null
-     */
-    protected function getStatusResource()
-    {
-        return $this->status;
     }
 
 
