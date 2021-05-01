@@ -2,6 +2,7 @@
 
 namespace Modules\Ticketing\Http\Controllers\V1;
 
+use App\Console\Commands\DevDisableCommand;
 use App\Models\Ticket;
 use App\Http\Abstracts\ModularController;
 use Modules\Ticketing\Http\Requests\V1\AdminTicketReplyRequest;
@@ -22,7 +23,7 @@ class AdminTicketsController extends ModularController
     {
         $tickets = Ticket::all();
         $result  = Ticket::collectionResourceArray($tickets, ["status", "Messages"]);
-        return $this->success([$result]);
+        return $this->success($result);
     }
 
 
