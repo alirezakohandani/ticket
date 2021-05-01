@@ -25,28 +25,6 @@ class Ticket extends ModularModel
 
 
     /**
-     * Create new ticket
-     *
-     * @param TicketSaveRequest $request
-     * @param int               $person_id
-     *
-     * @return \App\Models\Ticket
-     */
-    public function createTicket(TicketSaveRequest $request, int $person_id, int $ref_number)
-    {
-        return $request->model->batchSave([
-            'person_id'  => $person_id,
-            'ref_number' => $ref_number,
-            'type'       => $request->type,
-            'status'     => 'pending',
-
-        ], ['email']);
-
-    }
-
-
-
-    /**
      * Changes the status of the ticket to closed
      *
      * @return Ticket
