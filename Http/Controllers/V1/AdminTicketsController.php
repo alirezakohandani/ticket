@@ -20,22 +20,8 @@ class AdminTicketsController extends ModularController
      */
     public function index()
     {
-        //TODO Read about the Quark resource system and see similar uses for the getResourcesFromBuilder() method
         $tickets = Ticket::all();
-        $result  = [];
-        foreach ($tickets as $ticket) {
-            $result[] = [
-                'id'       => hashid($ticket->id),
-                'status'   => $ticket->status,
-                //'title'    => $ticket->messages()->first()->title,
-                'messages' => $ticket->messages->map(function ($message) {
-                    return [
-                        'id'          => hashid($message->id),
-                        'description' => $message->description,
-                    ];
-                }),
-            ];
-        }
+        $result  = Ticket::collectionResourceArray($tickets, ["status", "Messages"]);
         return $this->success([$result]);
     }
 
