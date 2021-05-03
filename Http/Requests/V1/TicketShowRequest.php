@@ -39,7 +39,7 @@ class TicketShowRequest extends ModularFormRequest // list request is for list, 
     public function mainRules()
     {
         return [
-            'ref_number' => "required|numeric|max:9",
+            'ref_number' => "required|numeric",
         ];
     }
 
