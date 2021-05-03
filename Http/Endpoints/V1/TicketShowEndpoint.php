@@ -6,7 +6,7 @@ use Modules\Endpoint\Services\EndpointAbstract;
 use Modules\Ticketing\Http\Controllers\V1\TicketsController;
 
 /**
- * @api               {GET}
+ * @api               {POST}
  *                    /api/modular/v1/ticketing-ticket-show
  *                    Show tickets based on tracking code
  * @apiDescription    Guest users can see their current status and messages by sending a ticket tracking code.
@@ -83,7 +83,7 @@ class TicketShowEndpoint extends EndpointAbstract
      */
     public function getValidMethod(): string
     {
-        return static::HTTP_GET;
+        return static::HTTP_POST;
     }
 
 
