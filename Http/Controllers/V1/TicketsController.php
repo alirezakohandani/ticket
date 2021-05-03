@@ -2,7 +2,6 @@
 
 namespace Modules\Ticketing\Http\Controllers\V1;
 
-use App\Classes\SimpleListRequest;
 use App\Classes\TrackingNumber;
 use App\Http\Abstracts\ModularController;
 use App\Models\Message;
@@ -20,11 +19,11 @@ class TicketsController extends ModularController
      * Save a new ticket
      *
      * @param TicketSaveRequest $request
+     * @return Response
      */
     public function store(TicketSaveRequest $request, Person $person)
     {
         if (!$person->isPersonExists($request->email)) {
-
             $person = $person->registerUser($request->email);
         }
 
