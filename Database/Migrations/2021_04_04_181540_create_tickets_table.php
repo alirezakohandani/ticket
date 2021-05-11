@@ -19,6 +19,7 @@ class CreateTicketsTable extends ModularMigration
             $table->unsignedInteger('person_id');
             $table->foreign('person_id')->references('id')->on('persons')->onDelete('cascade');
 
+            $table->string('title');
             $table->integer('ref_number');
             $table->enum('type', ['immediate', 'normal', 'nonsignificant']);
             $table->enum('status', ['pending', 'anwserd', 'closed']);
