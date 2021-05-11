@@ -24,4 +24,20 @@ trait TicketResourcesTrait
     }
 
 
+
+    /**
+     * get messages resource.
+     *
+     * @return string|null
+     */
+    public function getMessagesResource()
+    {
+        return $this->messages->map(function ($message) {
+            return [
+                'id'          => hashid($message->id),
+                'description' => $message->description,
+            ];
+        });
+    }
+
 }

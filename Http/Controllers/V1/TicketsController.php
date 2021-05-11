@@ -19,6 +19,7 @@ class TicketsController extends ModularController
      * Save a new ticket
      *
      * @param TicketSaveRequest $request
+     *
      * @return Response
      */
     public function store(TicketSaveRequest $request, Person $person)
@@ -67,12 +68,7 @@ class TicketsController extends ModularController
             'id'       => hashid($request->model->id),
             'status'   => $request->model->status,
             'title'    => $request->model->messages()->first()->title,
-            'messages' => $request->model->messages->map(function ($message) {
-                return [
-                    'id'          => hashid($message->id),
-                    'description' => $message->description,
-                ];
-            }),
+            'messages' => $request->model->getMessagesResource(),
         ]);
 
     }

@@ -70,23 +70,6 @@ class Ticket extends ModularModel
 
 
     /**
-     * get messages resource.
-     *
-     * @return string|null
-     */
-    protected function getMessagesResource()
-    {
-        return $this->messages->map(function ($message) {
-            return [
-                'id'          => hashid($message->id),
-                'description' => $message->description,
-            ];
-        });
-    }
-
-
-
-    /**
      * get title resource.
      *
      * @return string|null
