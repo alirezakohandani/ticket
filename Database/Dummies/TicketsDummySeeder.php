@@ -53,7 +53,7 @@ class TicketsDummySeeder extends ModularDummySeeder
     {
         $persons = User::all('id');
         $type    = ['immediate', 'normal', 'nonsignificant'];
-        $status  = ['pending', 'anwserd', 'closed'];
+        $status  = ['pending', 'answered', 'closed'];
 
         $data = [
             "person_id"  => Person::where('id', rand(1, count($persons)))->select("id")

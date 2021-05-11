@@ -37,7 +37,7 @@ class TicketChangeStatusRequest extends ModularFormRequest
     {
         return [
             'ref_number' => "required|int",
-            'status'     => "required|string|in:pending,anwserd,closed",
+            'status'     => "required|string|in:pending,answered,closed",
         ];
     }
 
