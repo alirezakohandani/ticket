@@ -52,7 +52,7 @@ class AdminTicketsController extends ModularController
 
 
     /**
-     *Administrators with reply access can change the status of the ticket
+     * Administrators with reply access can change the status of the ticket
      *
      * @param TicketChangeStatusRequest $request
      *
